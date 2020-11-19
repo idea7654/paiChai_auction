@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js"
   },
-  "type": "module",
+  
   "dependencies": {
     "axios": "0.21.0",
     "cookie-parser": "~1.4.4",
