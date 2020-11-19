@@ -30,7 +30,7 @@ router.get('/status/all', (req, res) => {
   });
 });
 
-router.post('/complete/:id', async(req, res, next) => {
+router.post('/completes/:id', async(req, res, next) => {
   try{
       await Finishproduct.findOneAndUpdate({
         id: req.params.id
