@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const dotenv = require('dotenv');
+dotenv.config();
 const db = require('./schema/index');
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
@@ -13,6 +15,7 @@ const Alarm = require('./schema/alarm');
 const Finishproduct = require('./schema/finishproduct');
 const engine = require('ejs-locals');
 const methodOverride = require('method-override');
+
 const socket = require('socket.io');
 const axios = require('axios');
 const port = process.env.PORT || 3000;
@@ -30,7 +33,8 @@ const categoryRouter = require('./routes/category');
 const paymentsRouter = require('./routes/payments');
 const alarmRouter = require('./routes/alarm');
 
-var app = express();
+const app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
