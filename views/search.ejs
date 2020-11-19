@@ -1,0 +1,16 @@
+<%- layout('layout') %>
+  <div style="position: absolute; left: 20%; top: 30%;" class="main" style="overflow: hidden;">
+    <div class="row">
+      <% result.forEach(function(i) { %>
+        <div class="col-sm-5 col-md-3">
+          <div class="thumbnail"">
+            <img src="/images/<%= i.image %>" style="width:150px; height:150px; object-fit:cover;">
+            <div class="caption">
+              <h3><a href="/product/<%= i.id %>"><%= i.title %></a></h3>
+              <p><%= i.category %></p>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>

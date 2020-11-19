@@ -1,0 +1,134 @@
+<%- layout('layout') %>
+
+<div class="form">
+  <form class="navbar-form navbar-left" role="login" method="POST" action="/sub-product" enctype="multipart/form-data">
+    <div class="form-group">
+      <input style="width: 600px;" type="text" class="form-control" placeholder="판매물품" name="title">
+      <br>
+      <hr>
+      <div class="dropdown">
+        <input id="categorytext" type="button" onclick="myFunction()" class="dropbtn" value="카테고리" />
+        <input id="categoryButton" type="hidden" name="category" value="카테고리" />
+        <div id="myDropdown" class="dropdown-content">
+          <a onclick="category(1)">이공계</a>
+          <a onclick="category(2)">상경계</a>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <input type="text" class="form-control" placeholder="경매시작가" name="nowprice">
+      <br>
+      <hr>
+      <input type="text" class="form-control" placeholder="낙찰확정가" name="onceprice">
+      <br>
+      <hr>
+      <input type="file" name="image" id="image" accept="image/*" onchange="setThumbnail(event);" />
+      <div id="image_container">
+      </div>
+      <script type="text/javascript">
+        function setThumbnail(event) {
+          var reader = new FileReader();
+
+          reader.onload = function(event) {
+            var img = document.createElement('img');
+            img.style.cssText = 'width300px; height:300px;';
+            img.setAttribute('src', event.target.result);
+            document.querySelector('div#image_container').appendChild(img);
+          };
+
+          reader.readAsDataURL(event.target.files[0]);
+        }
+      </script>
+    </div>
+    <br>
+    <hr>
+    <button type="submit" class="btn btn-default">등록하기</button>
+  </form>
+</div>
+
+
+
+<script>
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+  function category(a) {
+    if(a === 1){
+      document.getElementById('categoryButton').value = '이공계';
+      document.getElementById('categorytext').value = '이공계';
+    }
+    if(a === 2){
+      document.getElementById('categoryButton').value = '상경계';
+      document.getElementById('categorytext').value = '상경계';
+    }
+  }
+</script>
+
+<style media="screen">
+  /* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.form {
+  position: absolute;
+  left: 20%;
+  top: 30%;
+}
+
+</style>

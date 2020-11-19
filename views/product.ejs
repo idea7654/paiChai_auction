@@ -1,0 +1,86 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<%- layout('layout') %>
+
+<div style="position:absolute; left:300px; top: 300px;" class="row">
+  <img style="width:600px; height:400px;" src="/images/<%= product.image %>">
+</div>
+
+<div style="position:absolute; left:300px; top: 700px;" class="info">
+  <h3><%= product.title %></h3>
+  <br>
+</div>
+
+<div style="position:absolute; left:1000px; top:200px;" class="bid">
+  <h2 id="time"></h2>
+  <hr>
+  <h3>최고입찰자: <%- product.nowowner %></h3>
+  <hr>
+  <h3>현재가격</h3>
+  <h2><%- product.nowprice %>원</h2>
+  <hr>
+  <h3>낙찰확정가</h3>
+  <h2><%- product.onceprice %>원</h2>
+  <form class="" action="/product/<%- product.id %>/finishbid?_method=PUT" method="POST">
+    <button type="submit" id="finishbid">낙찰확정하기</button>
+  </form>
+  <hr>
+  <form class="" action="/product/<%- product.id %>/bid?_method=PUT" method="POST">
+    <input onkeypress='return checkNumber(event)' type="text" name="bidvalue" placeholder="입찰가를 적어주세요(숫자만 가능)">
+    <button type="submit" id="bid">입찰하기</button>
+  </form>
+  <hr>
+</div>
+
+<div class="delete" style="position: absolute; left: 60%; top: 90%;">
+  <form id="deleteButton" action="/product/<%- product.id %>?_method=DELETE" method="post">
+
+  </form>
+</div>
+
+<div style="position:absolute; left:1000px; top: 650px;" class="sellerInfo">
+  <h3>출품자</h3>
+  <h2><%- product.owner %></h2>
+</div>
+
+<script>
+  function checkNumber(event) {
+    if(event.key === '.'
+     || event.key === '-'
+     || event.key >= 0 && event.key <= 9) {
+       return true;
+    }
+    return false;
+  }
+
+  var setTime = "<%= moment(product.finaltime).format('DD-MM-YYYY HH:mm') %>";
+  var currentdate = new Date();
+  var setTime1 = setTime.split(' ')[1].split(':');
+  var setTime2 = setTime.split(' ')[0].split('-');
+  var newDate = new Date(setTime2[2], setTime2[1]-1, setTime2[0], setTime1[0], setTime1[1]);
+  var elapsedHour = Math.floor((newDate.getTime() - currentdate.getTime()) / 1000 / 60 / 60);
+  var elapsMinutes = Math.floor((newDate.getTime() - currentdate.getTime()) / 1000 / 60 % 60);
+  document.getElementById('time').innerHTML=`남은시간: ${elapsedHour} 시간 ${elapsMinutes} 분`;
+
+  setInterval(() => {
+    currentdate = new Date();
+    elapsedHour = Math.floor((newDate.getTime() - currentdate.getTime()) / 1000 / 60 / 60);
+    elapsMinutes = Math.floor((newDate.getTime() - currentdate.getTime()) / 1000 / 60 % 60);
+    document.getElementById('time').innerHTML=`남은시간: ${elapsedHour} 시간 ${elapsMinutes} 분`;
+  }, 1000);
+
+  if(elapsedHour * 60 + elapsMinutes < 1){
+    alert('경매가 끝난 제품입니다');
+    window.location = "/";
+  }
+
+  var deleteButton = document.getElementById('deleteButton');
+  if(<%= flag %> === true){
+    var btn = document.createElement('BUTTON');
+    btn.setAttribute("type", "submit");
+    btn.innerHTML = '삭제';
+    deleteButton.appendChild(btn);
+  }
+
+  //socket
+
+</script>

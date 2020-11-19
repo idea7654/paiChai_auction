@@ -1,0 +1,25 @@
+<%- layout('layout') %>
+
+  <div class="announce">
+    <ul class="nav nav-pills nav-stacked">
+      <li role="presentation" class="active"><a href="/announce">공지사항</a></li>
+      <% announceResult.forEach((i) => { %>
+        <li role="presentation"><a href="/announce/<%- i.id %>"><%- i.title %></a></li>
+      <% }) %>
+  </div>
+
+  <div style="position: absolute; left: 20%; top: 30%;" class="main" style="overflow: hidden;">
+    <div class="row">
+      <% result.forEach(function(i) { %>
+        <div class="col-sm-5 col-md-3">
+          <div class="thumbnail"">
+            <img src="/images/<%= i.image %>" style="width:150px; height:150px; object-fit:cover;">
+            <div class="caption">
+              <h3><a href="/product/<%= i.id %>"><%= i.title %></a></h3>
+              <p><%= i.category %></p>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>

@@ -1,0 +1,29 @@
+<%- layout('layout') %>
+
+<div class="chatList">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>채팅</h1>
+          <ul class="list-group">
+            <% result.forEach((i) => { %>
+              <li class="list-group-item"><a href="/chat/<%= i.id %>"><%= i.title %></a></li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- <div class="">
+  <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><a href="/subannounce">글쓰기</a></button>
+</div>
+</div> -->
+
+<style media="screen">
+  .chatList {
+    position: absolute;
+    left: 18%;
+    top: 28%;
+  }
+</style>

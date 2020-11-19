@@ -1,0 +1,24 @@
+<%- layout('layout') %>
+
+<div class="alarmList">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>알림</h1>
+          <ul class="list-group">
+            <% result.forEach((i) => { %>
+              <li class="list-group-item"><%= i.content %></li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+
+<style media="screen">
+  .alarmList {
+    position: absolute;
+    left: 18%;
+    top: 28%;
+  }
+</style>

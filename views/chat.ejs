@@ -1,0 +1,57 @@
+<%- layout('layout') %>
+
+<div class="chat">
+  <div id="box" class="container overflow-auto" style="height: 300px">
+    <div id="messages" class="alert alert-secondary" role="alert" style="text-decoration: underline; overflow: auto;">
+      <% result.forEach((i) => { %>
+        <%= `${i.user} : ${i.chat}` %>
+    <br>
+      <% }) %>
+    </div>
+  </div>
+  <div class="margin-s10"></div>
+
+  <form onsubmit="return false">
+    <div class="form-group">
+      <input type="text" id="text" class="form-control form-control-lg margin-top-10"  placeholder="이곳에 채팅을 입력하세요"
+      onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('sendButton').click()" >
+
+    </div>
+    <input type="button" id="sendButton" value="send" onclick="send()" class="form-control btn btn-dark">
+  </form>
+</div>
+
+<style>
+  .chat {
+    position: absolute;
+    left: 18%;
+    top: 35%;
+  }
+</style>
+
+<script>
+  const socket = io();
+  const user = "<%= user.loginId %>";
+  const roomId = <%= roomId %>;
+
+  function send(){
+    const value = document.getElementById('text').value;
+    socket.emit('sendUser', {
+      user: user,
+      value: value,
+      roomId: roomId
+    });
+    document.getElementById('text').value = null;
+  }
+
+  socket.on('sendUser', (data) => {
+    console.log("연결");
+    var messages = document.getElementById("messages");
+    var text = document.createTextNode(`${data.user} : ${data.value}`);
+    messages.appendChild(text);
+    messages.appendChild(document.createElement("br"));
+  });
+
+  socket.emit('sendRoom', roomId);
+</script>

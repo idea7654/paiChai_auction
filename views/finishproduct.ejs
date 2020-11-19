@@ -1,0 +1,41 @@
+<%- layout('layout') %>
+
+<div style="position:absolute; left:300px; top: 300px;" class="row">
+  <img style="width:600px; height:400px;" src="/images/<%= result.image %>">
+</div>
+
+<div style="position:absolute; left:300px; top: 700px;" class="info">
+  <h3><%= result.title %></h3>
+  <br>
+</div>
+
+<div style="position:absolute; left:1000px; top:300px;" class="bid">
+  <h2 id="time"></h2>
+  <br>
+  <h3>최고입찰자: <%- result.nowowner %></h3>
+  <br>
+  <h3>최종가격</h3>
+  <h2><%- result.finalprice %>원</h2>
+</div>
+
+<div style="position:absolute; left:1000px; top: 600px;" class="sellerInfo">
+  <h3>출품자</h3>
+  <h2><%- result.owner %></h2>
+</div>
+
+
+<div id="pay" style="position: absolute; left: 55%; top: 90%;">
+  <!-- <button type="button" onclick="window.location.href='/payments/<%- result.id %>'">결제하기</button> -->
+</div>
+<script>
+  var flag = <%= flag %>;
+
+  if(flag === true){
+    var btn = document.createElement('button');
+    btn.addEventListener('click', () => {
+      window.location.href='/payments/<%- result.id %>';
+    });
+    btn.innerHTML = '결제하기';
+    document.getElementById('pay').appendChild(btn);
+  }
+</script>

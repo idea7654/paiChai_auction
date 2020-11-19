@@ -1,0 +1,44 @@
+body {
+  padding: 25px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #C2ECFF;
+}
+
+a {
+  color: #191970;
+}
+
+.myList{
+  position: absolute;
+  top: 200px;
+  width: 150px;
+}
+
+#category {
+  text-align: center;
+}
+
+.announce {
+  position: absolute;
+  width: 300px;
+  right: 30px;
+  top: 300px;
+}
+
+.main {
+  position: absolute;
+  width: 800px;
+  height: 580px;
+  top: 200px;
+  left: 250px;
+  object-fit: cover;
+}
+
+div.vertical-line{
+      width: 3px; /* Line width */
+      background-color: white; /* Line color */
+      height: 60%; /* Override in-line if you want specific height. */
+      position: absolute;
+      left: 17%;
+      top: 30%;
+    }

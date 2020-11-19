@@ -1,0 +1,79 @@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js"></script>
+
+<html>
+  <head>
+    <div style="position:absolute; z-index: 1; left: -10%; top: -10%; width:110%; height:32%; background-color: #579FC6;">
+
+    </div>
+    <div style="position: absolute; z-index: 10; left: 2.5%; top: 0.2%;">
+      <img src="/images/icon.png" width="170px" height="170px">
+    </div>
+    <h1 style="position: absolute; z-index: 2; left: 17%; top: 6%;"><a href="/">배재대학교 중고경매장터</a> <span class="label label-default" style="background-color: #191970;">
+      <% if(user !== undefined){ %>
+        <a style="color: #FFFFFF;" href="/login/logout">로그아웃</a>
+        <script>
+          var socket = io();
+
+          socket.emit('layout', <%= user.loginId %>);
+
+          socket.on('layout', (data) => {
+            var btn = document.createTextNode(data);
+            var alarm = document.getElementById('alarm');
+            alarm.appendChild(btn);
+          });
+        </script>
+      <% } else { %>
+        <a style="color: #FFFFFF;" href="/login">로그인</a>
+      <% } %>
+    </h1>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="javascripts" href="/javascripts/index.js">
+    <button style="position: absolute; z-index: 3; left: 93%; top: 5%;" onclick="return window.location='/chat';" type="button" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+    </button>
+    <div id="alarm" style="position: absolute; left: 90.5%; top: 5%; z-index: 11;">
+
+    </div>
+    <button style="position: absolute; z-index: 4; left: 88%; top: 5%;" onclick="return window.location='alarm';" type="button" name="button" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-bell"></span>
+    </button>
+    <div style="position: absolute; left: 80%; top: 13%;" class="col-sm-3 col-md-3 pull-right">
+        <form class="navbar-form-lg" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="search" id="srch-term">
+            <div class="input-group-btn">
+                <button style="position: absolute; width: 40px; height:34px; top: 0%; " class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>
+    <div class="myList" style="position: absolute; top: 40%; background-color: #FFFFFF">
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="active"><a href="/mypage">>마이페이지</a></li>
+        <li role="presentation"><a href="/nowbid">>입찰중</a></li>
+        <li role="presentation"><a href="/finishbid">>낙찰완료</a></li>
+        <li role="presentation"><a href="/nowsell">>출품중</a></li>
+        <li role="presentation"><a href="/finishsell">>판매완료</a></li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            >카테고리로 찾기 <span class="caret"></span>
+          </a>
+          <ul id="category" class="dropdown-menu" role="menu">
+            <br>
+            <li role="presentation"><a href="/category?category=이공계">이공계</a></li>
+            <br>
+            <li role="presentation"><a href="/category?category=상경계">상경계</a></li>
+            <br>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="vertical-line"></div>
+  </head>
+  <body>
+    <%- body %>
+  </body>
+</html>
