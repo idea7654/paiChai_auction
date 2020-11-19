@@ -16,17 +16,20 @@ router.get('/update/:id', isLoggedIn, (req, res) => {
 router.post('/', isLoggedIn, upload.single('image'), async(req, res, next) => {
   try{
     //물품등록
-    const result = await Product.create({
-      category: req.body.category,
-      title: req.body.title,
-      owner: req.user.loginId,
-      nowprice: req.body.nowprice,
-      onceprice: req.body.onceprice,
-      image: req.file.filename,
-      nowowner: req.user.loginId
-    });
-    console.log(result);
-    res.redirect('/');
+    if(req.body.category === '카테고리'){
+      await res.send(`<script> alert('카테고리를 골라주세요');window.location = "/sub-product";</script>`)
+    }else{
+      const result = await Product.create({
+        category: req.body.category,
+        title: req.body.title,
+        owner: req.user.loginId,
+        nowprice: req.body.nowprice,
+        onceprice: req.body.onceprice,
+        image: req.file.filename,
+        nowowner: req.user.loginId
+      });
+      res.redirect('/');
+    }
   }catch(err){
     console.error(err);
     next(err);

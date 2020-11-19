@@ -20,9 +20,11 @@
           socket.emit('layout', <%= user.loginId %>);
 
           socket.on('layout', (data) => {
-            var btn = document.createTextNode(data);
-            var alarm = document.getElementById('alarm');
-            alarm.appendChild(btn);
+            if(data !== 0){
+              var btn = document.createTextNode(data);
+              var alarm = document.getElementById('alarm');
+              alarm.appendChild(btn);
+            }
           });
         </script>
       <% } else { %>

@@ -23,12 +23,16 @@
   <h2><%- result.owner %></h2>
 </div>
 
+<div id="line" style="position: absolute; top: 50%;">
 
-<div id="pay" style="position: absolute; left: 55%; top: 90%;">
+</div>
+
+<div id="pay" style="position: absolute; height: 30px; left: 55%; top: 90%;">
   <!-- <button type="button" onclick="window.location.href='/payments/<%- result.id %>'">결제하기</button> -->
 </div>
 <script>
   var flag = <%= flag %>;
+  var pay = <%= result.pay %>;
 
   if(flag === true){
     var btn = document.createElement('button');
@@ -37,5 +41,11 @@
     });
     btn.innerHTML = '결제하기';
     document.getElementById('pay').appendChild(btn);
+  }
+
+  if(pay){
+    document.body.style.opacity = 0.5;
+    alert('결제가 완료된 상품입니다!');
+    window.location.href = '/';
   }
 </script>
