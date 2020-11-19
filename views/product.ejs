@@ -1,16 +1,16 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <%- layout('layout') %>
 
-<div style="position:absolute; left:300px; top: 300px;" class="row">
+<div style="position:absolute; left:20%; top: 30%;" class="row">
   <img style="width:600px; height:400px;" src="/images/<%= product.image %>">
 </div>
 
-<div style="position:absolute; left:300px; top: 700px;" class="info">
+<div style="position:absolute; left:35%; top: 85%;" class="info">
   <h3><%= product.title %></h3>
   <br>
 </div>
 
-<div style="position:absolute; left:1000px; top:200px;" class="bid">
+<div style="position:absolute; left:75%; top:25%;" class="bid">
   <h2 id="time"></h2>
   <hr>
   <h3>최고입찰자: <%- product.nowowner %></h3>
@@ -37,7 +37,7 @@
   </form>
 </div>
 
-<div style="position:absolute; left:1000px; top: 650px;" class="sellerInfo">
+<div style="position:absolute; left:75%; top: 83%;" class="sellerInfo">
   <h3>출품자</h3>
   <h2><%- product.owner %></h2>
 </div>

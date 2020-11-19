@@ -5,7 +5,7 @@
 
 <html>
   <head>
-    <div style="position:absolute; z-index: 1; left: -10%; top: -10%; width:110%; height:32%; background-color: #579FC6;">
+    <div style="position:absolute; z-index: 1; left: 0%; top: -10%; width:100%; height:32%; background-color: #579FC6;">
 
     </div>
     <div style="position: absolute; z-index: 10; left: 2.5%; top: 0.2%;">
@@ -21,9 +21,13 @@
 
           socket.on('layout', (data) => {
             if(data !== 0){
-              var btn = document.createTextNode(data);
+              //var btn = document.createTextNode(data);
               var alarm = document.getElementById('alarm');
-              alarm.appendChild(btn);
+              var span = document.createElement('SPAN');
+              span.className = "badge";
+              span.innerHTML = data;
+              //alarm.appendChild(btn);
+              alarm.appendChild(span);
             }
           });
         </script>
@@ -37,6 +41,9 @@
       <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
     </button>
     <div id="alarm" style="position: absolute; left: 90.5%; top: 5%; z-index: 11;">
+
+    </div>
+    <div id="imgTag" style="position: absolute; z-idex: 12; left: 80%;">
 
     </div>
     <button style="position: absolute; z-index: 4; left: 88%; top: 5%;" onclick="return window.location='alarm';" type="button" name="button" class="btn btn-default btn-lg">
