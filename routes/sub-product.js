@@ -17,8 +17,16 @@ router.post('/', isLoggedIn, upload.single('image'), async(req, res, next) => {
   try{
     //물품등록
     if(req.body.category === '카테고리'){
-      await res.send(`<script> alert('카테고리를 골라주세요');window.location = "/sub-product";</script>`)
-    }else{
+      await res.send(`<script> alert('카테고리를 골라주세요.');window.location = "/sub-product";</script>`);
+    }
+    else if(req.body.title === ''){
+      await res.send(`<script> alert('제목을 입력해주세요.');window.location = "/sub-product";</script>`);
+    }else if(req.body.nowprice === ''){
+      await res.send(`<script> alert('시작 금액을 적어주세요');window.location = "/sub-product";</script>`);
+    }else if(req.body.image === ''){
+      await res.send(`<script> alert('이미지를 넣어주세요.');window.location = "/sub-product";</script>`);
+    }
+    else{
       const result = await Product.create({
         category: req.body.category,
         title: req.body.title,
