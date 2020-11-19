@@ -20,7 +20,7 @@ const finishproductSchema = new mongoose.Schema({
 finishproductSchema.plugin(autoIncrement.plugin, {
   model: 'finishproduct',
   field: 'id',
-  startAt: 1,
+  startAt: 100,
   increment: 1
 });
 
