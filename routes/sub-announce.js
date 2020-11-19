@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const {isLoggedIn, isNotLoggedIn} = require('../checkUser');
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
   res.render('sub-announce', {user: req.user});
 });
 
