@@ -66,7 +66,8 @@
     elapsedHour = Math.floor((newDate.getTime() - currentdate.getTime()) / 1000 / 60 / 60);
     elapsMinutes = Math.floor((newDate.getTime() - currentdate.getTime()) / 1000 / 60 % 60);
     document.getElementById('time').innerHTML=`남은시간: ${elapsedHour} 시간 ${elapsMinutes} 분`;
-    console.log(currentdate, newDate);
+    //console.log(currentdate, newDate);
+    console.log(setTime2[2], setTime2[1]-1, setTime2[0], setTime1[0], setTime1[1]);
   }, 1000);
 
   if(elapsedHour * 60 + elapsMinutes < 1){
