@@ -23,7 +23,7 @@ router.post('/', isLoggedIn, upload.single('image'), async(req, res, next) => {
       await res.send(`<script> alert('제목을 입력해주세요.');window.location = "/sub-product";</script>`);
     }else if(req.body.nowprice === ''){
       await res.send(`<script> alert('시작 금액을 적어주세요');window.location = "/sub-product";</script>`);
-    }else if(req.body.image === ''){
+    }else if(req.file.filename === undefined){
       await res.send(`<script> alert('이미지를 넣어주세요.');window.location = "/sub-product";</script>`);
     }
     else{
