@@ -35,8 +35,13 @@ const alarmRouter = require('./routes/alarm');
 
 const app = express();
 
+const fileURLToPath = require('url');
+const dirname = require('path');
 
 // view engine setup
+//배포셋업
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

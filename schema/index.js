@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGO_URL = `mongodb://${process.env.MONGO_ID}:${process.env.MONGO_PASSWORD}@localhost:27017/admin`;
+const MONGO_URL = process.env.MONGO_URI;
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);

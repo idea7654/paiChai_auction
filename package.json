@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
+  "type": "module",
   "dependencies": {
     "axios": "0.21.0",
     "cookie-parser": "~1.4.4",
